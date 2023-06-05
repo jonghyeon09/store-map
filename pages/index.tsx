@@ -13,9 +13,7 @@ interface Props {
   stores: Store[];
 }
 
-export default function Home({
-  stores,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({ stores }: Props) {
   const { initializeStores } = useStores();
 
   useEffect(() => {
