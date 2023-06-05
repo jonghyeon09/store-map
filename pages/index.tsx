@@ -1,14 +1,27 @@
 import Header from '@/components/common/Header';
-import { Inter } from 'next/font/google';
 import styles from '../styles/header.module.scss';
 import Link from 'next/link';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import { VscFeedback } from 'react-icons/vsc';
 import MapSection from '@/components/home/MapSection';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { Store } from '@/types/store';
+import useStores from '@/hooks/useStores';
+import { useEffect } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+interface Props {
+  stores: Store[];
+}
 
-export default function Home() {
+export default function Home({
+  stores,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { initializeStores } = useStores();
+
+  useEffect(() => {
+    initializeStores(stores);
+  }, [initializeStores, stores]);
+
   return (
     <>
       <Header
@@ -34,3 +47,12 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const stores = (await import('../public/stores.json')).default;
+
+  return {
+    props: { stores },
+    revalidate: 60 * 60,
+  };
+};
