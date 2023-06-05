@@ -15,6 +15,7 @@ export default function Home() {
           <button
             key={'button'}
             className={styles.box}
+            style={{ marginRight: 8 }}
             onClick={() => {
               alert('복사!');
             }}
