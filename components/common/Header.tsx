@@ -3,14 +3,15 @@ import React from 'react';
 import styles from '../../styles/header.module.scss';
 
 interface Props {
+  onClickLogo?: () => void;
   rightElements?: React.ReactElement[];
 }
 
-const Header = ({ rightElements }: Props) => {
+const HeaderComponent = ({ onClickLogo, rightElements }: Props) => {
   return (
     <header className={styles.header}>
       <div className={styles.flexItem}>
-        <Link href={'/'} className={styles.box}>
+        <Link href="/" onClick={onClickLogo} className={styles.box}>
           <span>Home</span>
         </Link>
       </div>
@@ -19,4 +20,4 @@ const Header = ({ rightElements }: Props) => {
   );
 };
 
-export default Header;
+export default HeaderComponent;
