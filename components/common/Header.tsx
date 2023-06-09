@@ -12,7 +12,7 @@ const HeaderComponent = ({ onClickLogo, rightElements }: Props) => {
     <header className={styles.header}>
       <div className={styles.flexItem}>
         <Link href="/" onClick={onClickLogo} className={styles.box}>
-          <span>Home</span>
+          <span>Reset</span>
         </Link>
       </div>
       {rightElements && <div className={styles.flexItem}>{rightElements}</div>}
