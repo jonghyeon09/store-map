@@ -42,9 +42,10 @@ export default function Home({ stores }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const stores = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/stores`
-  ).then((response) => response.json());
+  // const stores = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_URL}/api/stores`
+  // ).then((response) => response.json());
+  const stores = (await import('../public/stores.json')).default;
 
   return {
     props: { stores },
